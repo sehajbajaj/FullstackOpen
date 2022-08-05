@@ -7,7 +7,7 @@ const getAll = () => {
 };
 
 const create = (newObject) => {
-  return axios.get(baseUrl).then((response) => response.data);
+  return axios.post(baseUrl, newObject).then((response) => response.data);
 };
 
 const service = {
