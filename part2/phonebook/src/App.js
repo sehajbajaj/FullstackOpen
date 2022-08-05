@@ -1,4 +1,3 @@
-import "./App.css";
 import Header from "./components/Header";
 import Filter from "./components/Filter";
 import Add from "./components/Add";
