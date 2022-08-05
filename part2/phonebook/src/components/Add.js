@@ -1,4 +1,5 @@
 import { useState } from "react";
+import service from "../services/service";
 
 const Add = ({ persons, setPersons }) => {
   const [newName, setNewName] = useState("");
@@ -16,18 +17,17 @@ const Add = ({ persons, setPersons }) => {
     const dupePhone = persons.find(
       (person) => person.phone === newObject.phone
     );
-    const len = newNum.length;
 
-    if (dupePerson === undefined && dupePhone === undefined && len === 10) {
-      setPersons(persons.concat(newObject));
-      setNewName("");
-      setNewNum("");
+    if (dupePerson === undefined && dupePhone === undefined) {
+      service.create(newObject).then((response) => {
+        setPersons(persons.concat(newObject));
+        setNewName("");
+        setNewNum("");
+      });
     } else if (dupePerson !== undefined) {
       alert(`${newName} has already been added to the PhoneBook`);
     } else if (dupePhone !== undefined) {
       alert(`${newNum} has already been added to the PhoneBook`);
-    } else if (len !== 10) {
-      alert(`${newNum} is invalid!`);
     }
   };
 

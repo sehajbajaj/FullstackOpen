@@ -1,13 +1,13 @@
 import Numbers from "./Numbers";
 
-const Content = ({ persons }) => {
+const Content = ({ persons, searchElement }) => {
+  const data =
+    searchElement && searchElement.length > 0 ? searchElement : persons;
   return (
     <>
-      {persons.map((person) => {
-        return (
-          <Numbers key={person.name} name={person.name} phone={person.phone} />
-        );
-      })}
+      {data.map((person) => (
+        <Numbers key={person.name} name={person.name} phone={person.phone} />
+      ))}
     </>
   );
 };
