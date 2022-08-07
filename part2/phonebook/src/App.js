@@ -30,6 +30,15 @@ const App = () => {
     setFilters(keyword);
   };
 
+  const removePerson = (person) => {
+    if (window.confirm(`Delete ${person.name}?`)) {
+      service.remove(person.id).then((response) => {
+        const updatedPersons = persons.filter((item) => item.id !== person.id);
+        setPersons(updatedPersons);
+      });
+    }
+  };
+
   return (
     <div>
       <Header title="PhoneBook" />
@@ -39,8 +48,8 @@ const App = () => {
       <Header title="Numbers" />
       <Content
         persons={persons}
-        // filters={filters}
         searchElement={searchElement}
+        removePerson={removePerson}
       />
     </div>
   );

@@ -14,20 +14,28 @@ const Add = ({ persons, setPersons }) => {
     };
 
     const dupePerson = persons.find((person) => person.name === newObject.name);
-    const dupePhone = persons.find(
-      (person) => person.phone === newObject.phone
-    );
 
-    if (dupePerson === undefined && dupePhone === undefined) {
+    if (dupePerson) {
+      const res = window.confirm(
+        `${dupePerson.name} is already added to the PhoneBook, replace the old number with new one?`
+      );
+      if (res) {
+        service.update(dupePerson.id, newObject).then((response) => {
+          setPersons(
+            persons.map((person) =>
+              person.id === dupePerson.id ? response : person
+            )
+          );
+          setNewName("");
+          setNewNum("");
+        });
+      }
+    } else {
       service.create(newObject).then((response) => {
-        setPersons(persons.concat(newObject));
+        setPersons(persons.concat(response));
         setNewName("");
         setNewNum("");
       });
-    } else if (dupePerson !== undefined) {
-      alert(`${newName} has already been added to the PhoneBook`);
-    } else if (dupePhone !== undefined) {
-      alert(`${newNum} has already been added to the PhoneBook`);
     }
   };
 

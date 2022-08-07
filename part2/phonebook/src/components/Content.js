@@ -1,12 +1,15 @@
 import Numbers from "./Numbers";
 
-const Content = ({ persons, searchElement }) => {
+const Content = ({ persons, searchElement, removePerson }) => {
   const data =
     searchElement && searchElement.length > 0 ? searchElement : persons;
   return (
     <>
       {data.map((person) => (
-        <Numbers key={person.name} name={person.name} phone={person.phone} />
+        <div key={person.name}>
+          <Numbers name={person.name} phone={person.phone} />
+          <button onClick={() => removePerson(person)}>Delete</button>
+        </div>
       ))}
     </>
   );
