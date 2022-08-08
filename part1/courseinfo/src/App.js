@@ -19,6 +19,7 @@ const App = () => {
       },
     ],
   };
+
   return (
     <>
       <Header name={course.name} />
