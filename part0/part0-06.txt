@@ -1,0 +1,17 @@
+note over browser:
+Enter data
+Submit
+end note
+
+note over browser:
+Browser executes the event handler
+Creates a new note and add it to notes list
+Sends the new note to server
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server->browser: Responds with status code 201 created {"message":"note created"}
+
+note over browser:
+Browser does NOT reload and 
+stays on the same page

@@ -1,0 +1,38 @@
+note over browser:
+Enter data
+Submit
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+
+note over server:
+The server responds with HTTP status code 302,
+which redirects the browser to do a new HTTP GET request 
+to another address.Server creates new object.
+Adds it to the notes array.
+end note
+
+server->browser: redirect to https://studies.cs.helsinki.fi/exampleapp/notes
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server->browser: HTML code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js\
+server->browser: main.js
+
+
+note over browser:
+Browser executes main.js 
+that requests JSON data from server.
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server->browser: [{"content":"I love REACT","date":"2022-08-08T15:06:58.042Z"}, ...]
+
+note over browser:
+Browser executes the event handler 
+that renders notes to display
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
+server->browser: favicon.ico
