@@ -1,7 +1,7 @@
 import { useState } from "react";
 import service from "../services/service";
 
-const Add = ({ persons, setPersons }) => {
+const Add = ({ persons, setPersons, setNotification }) => {
   const [newName, setNewName] = useState("");
   const [newNum, setNewNum] = useState("");
 
@@ -28,6 +28,13 @@ const Add = ({ persons, setPersons }) => {
           );
           setNewName("");
           setNewNum("");
+          setNotification({
+            message: `${response.name} is updated!`,
+            style: "success",
+          });
+          setTimeout(() => {
+            setNotification({ message: null, style: null });
+          }, 3000);
         });
       }
     } else {
@@ -35,6 +42,13 @@ const Add = ({ persons, setPersons }) => {
         setPersons(persons.concat(response));
         setNewName("");
         setNewNum("");
+        setNotification({
+          message: `${response.name} is added to PhoneBook`,
+          style: "success",
+        });
+        setTimeout(() => {
+          setNotification({ message: null, style: null });
+        }, 3000);
       });
     }
   };

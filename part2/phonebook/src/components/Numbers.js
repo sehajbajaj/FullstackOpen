@@ -1,8 +1,10 @@
-const Numbers = ({ name, phone }) => {
-  console.log(name);
+const Numbers = ({ person, removePerson }) => {
   return (
     <p>
-      {name}: {phone}
+      {person.name}: {person.phone}
+      <button onClick={() => removePerson(person)} className="deleteButton">
+        Delete
+      </button>
     </p>
   );
 };

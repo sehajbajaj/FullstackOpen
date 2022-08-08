@@ -7,8 +7,12 @@ const Content = ({ persons, searchElement, removePerson }) => {
     <>
       {data.map((person) => (
         <div key={person.name}>
-          <Numbers name={person.name} phone={person.phone} />
-          <button onClick={() => removePerson(person)}>Delete</button>
+          <Numbers
+            name={person.name}
+            phone={person.phone}
+            person={person}
+            removePerson={removePerson}
+          />
         </div>
       ))}
     </>
