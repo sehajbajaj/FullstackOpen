@@ -1,0 +1,15 @@
+//Testing Purposes
+### Get all persons
+GET http://localhost:3001/api/persons
+
+### Delete a person
+DELETE http://localhost:3001/api/persons/607
+
+### Create a person
+POST http://localhost:3001/api/persons
+Content-Type: application/json 
+
+{
+    "name": "Random Name",
+    "number": "1234567890"
+}
